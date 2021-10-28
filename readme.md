@@ -1,0 +1,1 @@
+This repo will be used to create a regression model that predicts hosue prices in a real estate datset from a kaggle competition
