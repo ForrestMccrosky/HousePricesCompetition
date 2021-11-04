@@ -52,4 +52,4 @@ def split_data(df):
     print('Making Sure Our Shapes Look Good')
     print(f'Train: {train.shape}, Validate: {validate.shape}, Test: {test.shape}')
     
-    return, train, validate, test
+    return train, validate, test
