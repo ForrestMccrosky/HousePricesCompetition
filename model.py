@@ -14,6 +14,7 @@ import scipy.stats as stats
 from sklearn.feature_selection import SelectKBest, f_regression
 from sklearn.feature_selection import RFE
 from sklearn.linear_model import LinearRegression, LassoLars, TweedieRegressor
+from sklearn.metrics import mean_squared_error, r2_score 
 
 
 ################################ Custom Script For Modeling ######################################
@@ -45,3 +46,29 @@ def get_metrics(df, model_name,rmse_validate,r2_validate):
         'rmse_outofsample':rmse_validate, 
         'r^2_outofsample':r2_validate}, ignore_index=True)
     return df
+
+def run_model(model, features, target, pred_column, x, y, model_name, dataframe):
+    '''
+    This function is designed to run a inputted model using inputted features for the
+    train, validate, and test portions of the data science modeling portion of the pipeline.
+    
+    The model takes in three variables and will output there performance metrics for regression
+    machine learning algorithms 
+    '''
+    
+    # fit the model to our training data. We must specify the column in y_train, since we have 
+    ## converted it to a dataframe from a series! 
+
+    # fit the thing using only the features we selected
+    model.fit(x[features], y[target])
+    
+    # predict the dataframe values
+    y[pred_column] = model.predict(x[features])
+    
+    # evaluate: rmse
+    rmse_train = mean_squared_error(y[target], y[pred_column]) ** (1/2)
+    
+    print(f'RMSE for {model_name} using LinearRegression\n{dataframe}/In-Sample: {rmse_train}')
+    print('------------------------------------------------')
+
+    print(f'R squared score for OLS: {r2_score(y[target], y[pred_column])}')
