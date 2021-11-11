@@ -46,7 +46,7 @@ def acquire_housing_data():
     return df ## previewing our data
 
 
-def create_stats_df(df):
+def create_stats(df):
     '''
     This function creates a numerical statistics dataframe that has an included range column
     using the .describe method
@@ -59,6 +59,12 @@ def create_stats_df(df):
     
     return stats
 
+
+    
+def univariate_distributions(df):
+    '''
+    This function shows all the univariate distributions from the columns in the dataframe
+    '''
     ## list of all the columns retrieved from df.columns
     list = ['MSSubClass', 'MSZoning', 'LotFrontage', 'LotArea', 'Street', 'Alley',
            'LotShape', 'LandContour', 'Utilities', 'LotConfig', 'LandSlope',
@@ -75,12 +81,7 @@ def create_stats_df(df):
            'GarageFinish', 'GarageCars', 'GarageArea', 'GarageQual', 'GarageCond',
            'PavedDrive', 'WoodDeckSF', 'OpenPorchSF', 'EnclosedPorch', '3SsnPorch',
            'ScreenPorch', 'PoolArea', 'PoolQC', 'Fence', 'MiscFeature', 'MiscVal',
-           'MoSold', 'YrSold', 'SaleType', 'SaleCondition', 'SalePrice']
-    
-def univariate_distributions(df):
-    '''
-    This function shows all the univariate distributions from the columns in the dataframe
-    '''
+           'MoSold', 'YrSold', 'SaleType', 'SaleCondition', 'SalePrice'] 
     for x in list:
         print(f'Distribution of {x}\n')
         df[x].hist()
