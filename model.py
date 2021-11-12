@@ -71,4 +71,4 @@ def run_model(model, features, target, pred_column, x, y, model_name, dataframe)
     print(f'RMSE for {model_name} using LinearRegression\n{dataframe}/In-Sample: {rmse_train}')
     print('------------------------------------------------')
 
-    print(f'R squared score for OLS: {r2_score(y[target], y[pred_column])}')
+    print(f'R squared score for {model_name}: {r2_score(y[target], y[pred_column])}')
