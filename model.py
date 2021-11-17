@@ -66,9 +66,11 @@ def run_model(model, features, target, pred_column, x, y, model_name, dataframe)
     y[pred_column] = model.predict(x[features])
     
     # evaluate: rmse
-    rmse_train = mean_squared_error(y[target], y[pred_column]) ** (1/2)
+    rmse = mean_squared_error(y[target], y[pred_column]) ** (1/2)
     
-    print(f'RMSE for {model_name} using LinearRegression\n{dataframe}/In-Sample: {rmse_train}')
+    print(f'RMSE for {model_name} using LinearRegression\n{dataframe}/In-Sample: {rmse}')
     print('------------------------------------------------')
 
     print(f'R squared score for {model_name}: {r2_score(y[target], y[pred_column])}')
+    
+    return rmse
